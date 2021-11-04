@@ -205,6 +205,18 @@ extension AddAddressVC:UITableViewDelegate, UITableViewDataSource {
             })
         }
     }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+        self.addAddressVM.googleMaps.clear()
+        
+        self.addAddressVM.googleMaps.animate(toLocation: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        
+        let position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let marker = GMSMarker(position: position)
+        marker.map = self.addAddressVM.googleMaps
+        self.getAddressFromLatLon(lat: coordinate.latitude, withLongitude: coordinate.longitude)
+    }
 }
 
 extension AddAddressVC: CLLocationManagerDelegate, GMSMapViewDelegate  {
@@ -297,8 +309,9 @@ extension AddAddressVC {
   
     func searchPlaceFromGoogle(search_place_string : String) {
         
-        let currLocation = "\(self.addAddressVM.currLocationLat) \(self.addAddressVM.currLocationLng)"
-        var strGoogleApi = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(search_place_string)&location=\(currLocation)&key=\(yourApiKey)"
+     //   let currLocation = "\(self.addAddressVM.currLocationLat) \(self.addAddressVM.currLocationLng)"
+        var strGoogleApi = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(search_place_string)&key=\(yourApiKey)"
+//        var strGoogleApi = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(search_place_string)&location=\(currLocation)&key=\(yourApiKey)"
     
         strGoogleApi = strGoogleApi.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
@@ -323,7 +336,8 @@ extension AddAddressVC {
                         
                         DispatchQueue.main.async {
                             
-                            UIView.transition(with: self.addAddressVM.tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.addAddressVM.tableView.reloadData() })
+                            self.addAddressVM.tableView.reloadData()
+                         //   UIView.transition(with: self.addAddressVM.tableView, duration: 0.35, options: .transitionCrossDissolve, animations: { self.addAddressVM.tableView.reloadData() })
                         }
                     }
                 } catch {
@@ -337,6 +351,7 @@ extension AddAddressVC {
     }
     
     func getAddressFromLatLon(lat: Double, withLongitude lon: Double) {
+        
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
 
         let ceo: CLGeocoder = CLGeocoder()

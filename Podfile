@@ -11,9 +11,7 @@ target 'LifeDemo' do
   pod 'Wormholy'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod 'Firebase/Analytics'
   pod 'IQKeyboardManager'
-  pod 'Wormholy'
   
   target 'LifeDemoTests' do
     inherit! :search_paths
