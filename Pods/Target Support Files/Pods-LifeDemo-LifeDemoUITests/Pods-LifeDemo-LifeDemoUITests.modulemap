@@ -1,0 +1,6 @@
+framework module Pods_LifeDemo_LifeDemoUITests {
+  umbrella header "Pods-LifeDemo-LifeDemoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

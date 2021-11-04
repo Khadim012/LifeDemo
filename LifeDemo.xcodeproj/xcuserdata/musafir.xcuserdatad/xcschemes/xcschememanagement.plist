@@ -7,7 +7,25 @@
 		<key>LifeDemo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>18</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C298C3B52731D46A001643B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C298C3CB2731D46C001643B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C298C3D52731D46C001643B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
